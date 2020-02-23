@@ -41,12 +41,6 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor orangeColor];
-
-    if ([self.roomUuid length] > 0) {
-        [self joinExistRoom];
-    } else {
-        [self joinNewRoom];
-    }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidDismiss:) name:UIKeyboardDidHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:@"refresh" object:nil];
 }
@@ -64,11 +58,20 @@
 - (void)setupShareBarItem
 {
     UIBarButtonItem *item1 = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"设置 API", nil) style:UIBarButtonItemStylePlain target:self action:@selector(settingAPI:)];
-    UIBarButtonItem *item2 = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"分享", nil) style:UIBarButtonItemStylePlain target:self action:@selector(shareRoom:)];
+    UIBarButtonItem *item2 = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"分享", nil) style:UIBarButtonItemStylePlain target:self action:@selector(joinRoom)];
     UIBarButtonItem *item3 = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"pre", nil) style:UIBarButtonItemStylePlain target:self action:@selector(pptPreviousStep)];
     UIBarButtonItem *item4 = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"next", nil) style:UIBarButtonItemStylePlain target:self action:@selector(pptNextStep)];
     
     self.navigationItem.rightBarButtonItems = @[item1, item2, item3, item4];
+}
+
+- (void)joinRoom
+{
+    if ([self.roomUuid length] > 0) {
+        [self joinExistRoom];
+    } else {
+        [self joinNewRoom];
+    }
 }
 
 - (void)pptPreviousStep
