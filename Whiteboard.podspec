@@ -21,13 +21,7 @@ Pod::Spec.new do |s|
   s.source_files = 'Whiteboard/Classes/Whiteboard.h'
 
   # 配置类
-  s.subspec 'Object' do |object|
-    object.source_files = 'Whiteboard/Classes/Object/**'
-    object.public_header_files = 'Whiteboard/Classes/Object/**.h'
-    object.private_header_files = 'Whiteboard/Classes/Object/*+Private.h'
-    object.dependency 'YYModel', '~> 1.0.4'
-    object.frameworks = 'UIKit'
-  end
+
 
   # 动静态转换 http 请求封装
   s.subspec 'Converter' do |converter|
